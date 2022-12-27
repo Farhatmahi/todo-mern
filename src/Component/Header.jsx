@@ -61,28 +61,20 @@ const Header = () => {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-white hover:text-indigo-200">
-                <Link to="">Home</Link>
+                <Link to="/">Home</Link>
               </li>
-              <li className="text-white hover:text-indigo-200">
-                <Link to="">Blog</Link>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <Link to="">About US</Link>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <Link to="">Contact US</Link>
-              </li>
+
             </ul>
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
               <Link
-                to=""
+                to="/login"
                 className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
               >
                 Sign in
               </Link>
               <Link
-                to=""
+                to="/register"
                 className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
               >
                 Sign up
@@ -92,13 +84,13 @@ const Header = () => {
         </div>
         <div className="hidden space-x-2 md:inline-block">
           <Link
-            to=""
+            to="/login"
             className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
           >
-            Sign in
+            Login
           </Link>
           <Link
-            to=""
+            to="/register"
             className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
           >
             Sign up
