@@ -69,19 +69,28 @@ const Header = () => {
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+            <ul className="items-center justify-center space-y-4 md:flex md:space-x-6 md:space-y-0">
               <li className="text-white hover:text-indigo-200">
                 <Link to="/">Home</Link>
+              </li>
+              <li className="text-white hover:text-indigo-200">
+                <Link to="/add-task">Add Task</Link>
+              </li>
+              <li className="text-white hover:text-indigo-200">
+                <Link to="/my-tasks">My Tasks</Link>
+              </li>
+              <li className="text-white hover:text-indigo-200">
+                <Link to="/completed-tasks">Completed Tasks</Link>
               </li>
             </ul>
 
             {user ? (
               <Link
-                to="/"
-                className="lg:hidden md:inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-              >
-                Logout
-              </Link>
+              to="/register"
+              className="inline-block lg:hidden my-4 w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+            >
+              Logout
+            </Link>
             ) : (
               <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                 <Link
@@ -95,7 +104,8 @@ const Header = () => {
                   className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
                 >
                   Sign up
-                </Link>{" "}
+                </Link>
+                
               </div>
             )}
           </div>
@@ -105,7 +115,7 @@ const Header = () => {
           <div className="">
             <Link
               onClick={handleLogout}
-              className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+              className="hidden lg:inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
             >
               Logout
             </Link>
