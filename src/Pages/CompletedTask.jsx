@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ColorRing } from "react-loader-spinner";
-import TaskCard from "../Component/TaskCard";
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthProvider";
 
-const MyTasks = () => {
-  const { user } = useContext(AuthContext);
+import { AuthContext } from "../Context/AuthProvider";
+import CompletedTaskCard from "../Component/CompletedTaskCard";
+
+const CompletedTask = () => {
   const [allTasks, setAllTasks] = useState([]);
+  const { user } = useContext(AuthContext);
   const {
     data: tasks = [],
     isLoading,
@@ -15,7 +15,7 @@ const MyTasks = () => {
   } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:1000/task");
+      const res = await fetch("http://localhost:1000/task/completed-tasks");
       const data = await res.json();
       return data;
     },
@@ -45,14 +45,14 @@ const MyTasks = () => {
 
   return (
     <div className="py-20 container mx-auto px-4 lg:px-0">
-      <h1 className="text-5xl mb-10">Here's all of your tasks</h1>
+      <h1 className="text-5xl mb-10">Here's all of your completed tasks</h1>
       <div className="grid grid-cols-1">
         {allTasks.map((taskItem, index) => (
-          <TaskCard key={taskItem._id} taskItem={taskItem} index={index + 1} refetch={refetch}  />
+          <CompletedTaskCard key={taskItem._id} taskItem={taskItem} index={index + 1} refetch={refetch} />
         ))}
       </div>
     </div>
   );
 };
 
-export default MyTasks;
+export default CompletedTask;
