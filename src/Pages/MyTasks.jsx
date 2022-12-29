@@ -15,7 +15,7 @@ const MyTasks = () => {
   } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:1000/task");
+      const res = await fetch("https://todo-teal-nu-37.vercel.app/task");
       const data = await res.json();
       return data;
     },
@@ -48,7 +48,12 @@ const MyTasks = () => {
       <h1 className="text-5xl mb-10">Here's all of your tasks</h1>
       <div className="grid grid-cols-1">
         {allTasks.map((taskItem, index) => (
-          <TaskCard key={taskItem._id} taskItem={taskItem} index={index + 1} refetch={refetch}  />
+          <TaskCard
+            key={taskItem._id}
+            taskItem={taskItem}
+            index={index + 1}
+            refetch={refetch}
+          />
         ))}
       </div>
     </div>

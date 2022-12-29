@@ -1,7 +1,9 @@
 import React from "react";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const TaskCard = ({ taskItem, index, refetch }) => {
+  const navigate = useNavigate();
   const { _id, task, time } = taskItem;
 
   const completedData = {
@@ -9,7 +11,7 @@ const TaskCard = ({ taskItem, index, refetch }) => {
   };
 
   const handleCompleteStatus = (id) => {
-    fetch(`http://localhost:1000/task/${id}`, {
+    fetch(`https://todo-teal-nu-37.vercel.app/task/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -20,12 +22,13 @@ const TaskCard = ({ taskItem, index, refetch }) => {
       .then((data) => {
         console.log(data);
         toast.success("Marked as completed");
+        navigate("/completed-tasks");
         refetch();
       });
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:1000/task/${id}`, {
+    fetch(`https://todo-teal-nu-37.vercel.app/task/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

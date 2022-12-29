@@ -73,24 +73,27 @@ const Header = () => {
               <li className="text-white hover:text-indigo-200">
                 <Link to="/">Home</Link>
               </li>
-              <li className="text-white hover:text-indigo-200">
-                <Link to="/add-task">Add Task</Link>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <Link to="/my-tasks">My Tasks</Link>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <Link to="/completed-tasks">Completed Tasks</Link>
-              </li>
+
+              <>
+                <li className="text-white hover:text-indigo-200">
+                  <Link to="/add-task">Add Task</Link>
+                </li>
+                <li className="text-white hover:text-indigo-200">
+                  <Link to="/my-tasks">My Tasks</Link>
+                </li>
+                <li className="text-white hover:text-indigo-200">
+                  <Link to="/completed-tasks">Completed Tasks</Link>
+                </li>
+              </>
             </ul>
 
             {user ? (
               <Link
-              to="/register"
-              className="inline-block lg:hidden my-4 w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-            >
-              Logout
-            </Link>
+                to="/register"
+                className="inline-block lg:hidden my-4 w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+              >
+                Logout
+              </Link>
             ) : (
               <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                 <Link
@@ -105,7 +108,6 @@ const Header = () => {
                 >
                   Sign up
                 </Link>
-                
               </div>
             )}
           </div>

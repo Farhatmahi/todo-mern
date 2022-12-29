@@ -15,7 +15,9 @@ const CompletedTask = () => {
   } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:1000/task/completed-tasks");
+      const res = await fetch(
+        "https://todo-teal-nu-37.vercel.app/task/completed-tasks"
+      );
       const data = await res.json();
       return data;
     },
@@ -48,7 +50,12 @@ const CompletedTask = () => {
       <h1 className="text-5xl mb-10">Here's all of your completed tasks</h1>
       <div className="grid grid-cols-1">
         {allTasks.map((taskItem, index) => (
-          <CompletedTaskCard key={taskItem._id} taskItem={taskItem} index={index + 1} refetch={refetch} />
+          <CompletedTaskCard
+            key={taskItem._id}
+            taskItem={taskItem}
+            index={index + 1}
+            refetch={refetch}
+          />
         ))}
       </div>
     </div>

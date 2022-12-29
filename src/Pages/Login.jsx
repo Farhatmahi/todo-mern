@@ -1,33 +1,51 @@
 import React from "react";
 import { useContext } from "react";
-
-import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const {login} = useContext(AuthContext)
-  const handleLogin = e => {
-    e.preventDefault()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const { login, googleSignIn } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    login(email, password).then((result) => {
-      const user = result.user
-      console.log(user);
-      toast.success("Welcome")
-    }).catch((err) => {
-      console.error(err);
-    });
-  }
-  
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Welcome");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const handleGoogle = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success(`Welcome ${user.displayName}`)
+      })
+      .catch((err) => {});
+  };
 
   return (
-    <div className="mt-16 lg:mt-36">
+    <div className="mt-16 lg:mt-24">
       <h1 className="text-5xl font-bold mb-10">Login</h1>
       <div className="flex justify-center">
-        <form onSubmit={handleLogin} className="w-96  p-10 lg:shadow-lg lg:rounded-xl">
+        <form
+          onSubmit={handleLogin}
+          className="w-96  p-10 lg:shadow-lg lg:rounded-xl"
+        >
           <div className="mb-6">
             <label
               htmlFor="email"
@@ -58,12 +76,20 @@ const Login = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="text-white text-xl bg-[#f9bb18] hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center"
-          >
-            Submit
-          </button>
+          <div className="flex flex-col justify-around gap-4">
+            <button
+              type="submit"
+              className="text-white text-xl bg-[#f9bb18] hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center"
+            >
+              Submit
+            </button>
+            <button
+              onClick={handleGoogle}
+              className="text-white text-xl bg-[#f9bb18] hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center"
+            >
+              Continue with <FcGoogle className="inline ml-2" />
+            </button>
+          </div>
           <div className="mt-6">
             <label
               htmlFor="password"

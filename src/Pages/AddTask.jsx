@@ -21,7 +21,7 @@ const AddTask = () => {
       time: format(value, "P p"),
     };
 
-    fetch("http://localhost:1000/task", {
+    fetch("https://todo-teal-nu-37.vercel.app/task", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const AddTask = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Task added")
+        toast.success("Task added");
       });
   };
 
